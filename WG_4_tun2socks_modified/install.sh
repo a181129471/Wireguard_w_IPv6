@@ -18,5 +18,5 @@ wget https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2
 wget https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2socks_modified/tunnel_setup.sh
 curl -sSL https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2socks_modified/wg_tun2socks_installer.sh | bash
 echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
-echo "请手动运行一次 bash monitor.sh"
-echo "之后请手动运行 bash tunnel_setup.sh start 开启转发 或者 bash tunnel_setup.sh stop停止转发"
+echo -e "\033[0;31m需要手动运行 bash monitor.sh\033[0m"
+echo -e "\033[0;31m之后请手动运行 bash tunnel_setup.sh start 开启转发 或者 bash tunnel_setup.sh stop停止转发\033[0m"
