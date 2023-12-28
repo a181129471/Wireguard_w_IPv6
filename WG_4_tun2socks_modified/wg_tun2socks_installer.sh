@@ -141,6 +141,7 @@ start_menu(){
         apt install net-tools -y
     fi
     clear
+    wireguard_install
     echo -e "\033[43;42m ====================================\033[0m"
     echo -e "\033[43;42m 介绍：wireguard_tun2Socks一键脚本ipv4               \033[0m"
     echo -e "\033[43;42m 系统：Ubuntu                         \033[0m"
