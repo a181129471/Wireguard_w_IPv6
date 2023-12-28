@@ -1,7 +1,8 @@
 #!/bin/bash
 
 #下载安装tun2socks
-
+apt update
+apt install unzip
 wget https://github.com/xjasonlyu/tun2socks/releases/download/v2.5.2/tun2socks-linux-amd64.zip
 unzip tun2socks-linux-amd64.zip
 mv tun2socks-linux-amd64 /usr/bin/tun2socks
