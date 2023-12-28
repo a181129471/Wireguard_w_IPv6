@@ -97,7 +97,7 @@ EOF
     fi
     
     wg-quick up wg0
-    
+    clear
     content=$(cat /etc/wireguard/client.conf)
     echo -e "\033[37;41m电脑端请下载/etc/wireguard/client.conf，手机端可直接使用软件扫码\033[0m"
     echo "${content}" | qrencode -o - -t UTF8

@@ -14,10 +14,9 @@ unzip tun2socks-linux-amd64.zip
 mv tun2socks-linux-amd64 /usr/bin/tun2socks
 
 #下载安装魔改wireguard
-curl -sSL https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2socks_modified/wg_tun2socks_installer.sh | bash
-echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
 wget https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2socks_modified/monitor.sh
 wget https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2socks_modified/tunnel_setup.sh
-clear
+curl -sSL https://raw.githubusercontent.com/andy72630/Wireguard_w_IPv6/main/WG_4_tun2socks_modified/wg_tun2socks_installer.sh | bash
+echo "nameserver 1.1.1.1" | sudo tee /etc/resolv.conf > /dev/null
 echo "请手动运行一次 bash monitor.sh"
 echo "之后请手动运行 bash tunnel_setup.sh start 开启转发 或者 bash tunnel_setup.sh stop停止转发"
