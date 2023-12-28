@@ -7,12 +7,12 @@ default_gateway=$(ip route show default | awk '/default/ {print $3}')
 INTERFACE=$(ip route | grep default | awk '{print $5}')
 function ask_for_proxies() {
     while true; do
-        read -p "输入SOCKS5的IP:端口 格式：x.y.z.n:m (留空回车代表结束): " proxy_input
+        read -p $'\033[0;32m输入SOCKS5的IP:端口 格式：<账号>:<密码>@ip：port, 如果没有可直接ip：port(别输入前缀的socks5://) (留空回车代表结束):\033[0m ' proxy_input
         if [[ -z "$proxy_input" ]]; then
             if [[ ${#tun_proxies[@]} -gt 0 ]]; then
                 break
             else
-                echo "输入至少一个socks5代理地址或者按ctrl+c退出即可"
+                echo -e "\033[0;31m输入至少一个socks5代理地址或者按ctrl+c退出即可\033[0m"
                 continue
             fi
         fi
@@ -31,7 +31,7 @@ function start_tunnel() {
     #ip route add 45.86.228.229 via $default_gateway dev $INTERFACE monitor看着的
     nohup wg-quick up wg0 &
 
-    echo "请在10秒内连接wireguard"
+    echo -e "\033[0;31m请在10秒钟之内连接你的WIREGUARD客户端，用以获取客户端公网IP\033[0m"
     sleep 10
     wireguardClient_ip=$(wg | grep endpoint | awk '{print $2}' | cut -d ':' -f1)
     #ip route add $wireguardClient_ip via $default_gateway dev $INTERFACE monitor看着的
