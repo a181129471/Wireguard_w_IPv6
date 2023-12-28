@@ -15,16 +15,14 @@ if [ "$1" != "run_in_tmux" ]; then
     echo "你的检测程序已于后台运行中，若需要查看输入 tmux attach -t monitor_session 即可"
     exit 0
 fi
-
+INTERFACE=$(ip route | grep default | awk '{print $5}')
 # The following will run in the tmux session
 
 # Read the IP addresses from temporary files
 static_route_ip1=$(cat /tmp/static_route_ip1.txt)
 static_route_ip2=$(cat /tmp/static_route_ip2.txt)
-
 # Clean up the temporary files
 rm /tmp/static_route_ip1.txt /tmp/static_route_ip2.txt
-
 # Retrieve the default gateway
 static_route_gateway=$(ip route list | grep default | cut -d' ' -f 3)
 check_interval=5  # How often to check, in seconds.
@@ -35,13 +33,13 @@ check_static_route() {
         echo "Static route for $static_route_ip1 is present."
     else
         echo "Static route for $static_route_ip1 is missing!"
-        ip route add "$static_route_ip1" via "$static_route_gateway" dev enp1s0
+        ip route add "$static_route_ip1" via "$static_route_gateway" dev $INTERFACE
     fi
     if ip route show | grep -q "$static_route_ip2 via $static_route_gateway"; then
         echo "Static route for $static_route_ip2 is present."
     else
         echo "Static route for $static_route_ip2 is missing!"
-        ip route add "$static_route_ip2" via "$static_route_gateway" dev enp1s0
+        ip route add "$static_route_ip2" via "$static_route_gateway" dev $INTERFACE
     fi
 }
 
