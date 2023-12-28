@@ -5,6 +5,8 @@ if [[ $EUID -ne 0 ]]; then
     echo "请用root权限运行"
     exit 1
 fi
+apt update
+apt install unzip -y
 
 #下载安装tun2socks
 wget https://github.com/xjasonlyu/tun2socks/releases/download/v2.5.2/tun2socks-linux-amd64.zip
