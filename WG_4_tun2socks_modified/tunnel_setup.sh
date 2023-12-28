@@ -25,7 +25,7 @@ function start_tunnel() {
         ip tuntap add mode tun dev "tun$i"
         ip addr add "192.168.2$(expr $i + 0).1/24" dev "tun$i"
         ip link set dev "tun$i" up
-        nohup tun2socks -device "tun$i" -proxy socks5://Attention:NoNeedPassword@${tun_proxies[$i]} -interface $INTERFACE -tcp-auto-tuning &
+        nohup tun2socks -device "tun$i" -proxy socks5://${tun_proxies[$i]} -interface $INTERFACE -tcp-auto-tuning &
     done
 
     #ip route add 45.86.228.229 via $default_gateway dev $INTERFACE monitor看着的
